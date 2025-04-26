@@ -1,0 +1,111 @@
+---
+import { Code } from 'astro:components';
+
+const code = `interface Developer {
+    name: string;
+    skills: string[];
+    interests: string[];
+};
+
+interface TechStack {
+    devOps: string[];
+    backend: string[];
+   frontend: string[];
+};
+
+type ContactType = 'github' | 'twitter' | 'linkedIn' | 'email';
+
+const techStack: TechStack = {
+    devOps: [
+        'GitLab',
+        'GitHub',
+        'Cloudflare',
+        'Docker'
+    ],
+    frontend: [
+        'React.js',
+        'JavaScript',
+        'TypeScript',
+        'TailwindCSS',
+        'Astro',
+        'Ionic',
+        'Capacitor',
+        'Markdown',
+        'WordPress'
+    ],
+    backend: [
+        'AdonisJS',
+        'Fastify',
+        'FastAPI',
+        'Python',
+        'Node.js',
+        'Bun',
+        'PostgreSQL',
+        'MySQL',
+        'S3 Storage',
+    ]
+};
+
+const me: Developer = {
+    name: 'Vava Heirro',
+    skills: [
+        ...techStack.devOps,
+        ...techStack.backend,
+        ...techStack.frontend
+    ],
+    interests: [
+        'Open Source',
+        'Security',
+        'Privacy',
+        'Performance',
+        'Self-Hosting',
+        'Networking'
+    ]
+};
+
+const contact = (type: ContactType): string => {
+    switch (type) {
+        case 'github':
+            return 'https://github.com/heirro';
+        case 'twitter':
+            return 'https://x.com/heirrok';
+        case 'linked-in':
+            return 'https://www.linkedin.com/in/heirro';
+        default:
+            return 'vava@heirro.dev';
+    }
+};
+
+`;
+---
+
+<Code
+    code={code}
+    lang="js"
+    wrap={true}
+/>
+
+<style is:global>
+
+    /* Custom styling for code block line numbers */
+    pre.astro-code {
+        @apply bg-transparent !important;
+    }
+
+    pre.astro-code code {
+        @apply block;
+        counter-reset: step;
+        counter-increment: step 0;
+    }
+
+    pre.astro-code code .line {
+        @apply relative;
+    }
+
+    pre.astro-code code .line::before {
+        content: counter(step);
+        counter-increment: step;
+        @apply text-gray-600 pr-2;
+    }
+
+</style>
