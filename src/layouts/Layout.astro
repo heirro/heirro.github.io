@@ -101,11 +101,17 @@ const openGraph = {
         <meta name="description" content={seoDescription}>
         <meta name="abstract"    content={seoDescription}>
         <meta name="keywords"    content={seoKeywords}>
+        <!-- End -->
+
+        <!-- Google Adsense -->
+        <meta name="google-adsense-account" content="ca-pub-6087379701090395">
 
     </head>
 
     <body class="min-h-[100vh] flex items-center justify-center p-4">
         <slot />
     </body>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6087379701090395"
+     crossorigin="anonymous"></script>
 
 </html>
