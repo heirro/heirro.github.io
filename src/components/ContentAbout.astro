@@ -1,28 +1,30 @@
 ---
 import { Code } from 'astro:components';
 
-const code = `interface Developer {
-    name: string;
-    skills: string[];
-    interests: string[];
-};
+const code = `from typing import List, Literal
 
-interface TechStack {
-    devOps: string[];
-    backend: string[];
-   frontend: string[];
-};
+class Developer:
+    def __init__(self, name: str, skills: List[str], interests: List[str]):
+        self.name = name
+        self.skills = skills
+        self.interests = interests
 
-type ContactType = 'github' | 'twitter' | 'linkedIn' | 'email';
+class TechStack:
+    def __init__(self, dev_ops: List[str], backend: List[str], frontend: List[str]):
+        self.dev_ops = dev_ops
+        self.backend = backend
+        self.frontend = frontend
 
-const techStack: TechStack = {
-    devOps: [
+ContactType = Literal['github', 'twitter', 'linkedIn', 'email']
+
+tech_stack = TechStack(
+    dev_ops=[
         'GitLab',
         'GitHub',
         'Cloudflare',
         'Docker'
     ],
-    frontend: [
+    frontend=[
         'React.js',
         'JavaScript',
         'TypeScript',
@@ -33,7 +35,7 @@ const techStack: TechStack = {
         'Markdown',
         'WordPress'
     ],
-    backend: [
+    backend=[
         'AdonisJS',
         'Fastify',
         'FastAPI',
@@ -44,16 +46,12 @@ const techStack: TechStack = {
         'MySQL',
         'S3 Storage',
     ]
-};
+)
 
-const me: Developer = {
-    name: 'Vava Heirro',
-    skills: [
-        ...techStack.devOps,
-        ...techStack.backend,
-        ...techStack.frontend
-    ],
-    interests: [
+me = Developer(
+    name='Vava Heirro',
+    skills=tech_stack.dev_ops + tech_stack.backend + tech_stack.frontend,
+    interests=[
         'Open Source',
         'Security',
         'Privacy',
@@ -61,27 +59,23 @@ const me: Developer = {
         'Self-Hosting',
         'Networking'
     ]
-};
+)
 
-const contact = (type: ContactType): string => {
-    switch (type) {
-        case 'github':
-            return 'https://github.com/heirro';
-        case 'twitter':
-            return 'https://x.com/heirrok';
-        case 'linked-in':
-            return 'https://www.linkedin.com/in/heirro';
-        default:
-            return 'vava@heirro.dev';
-    }
-};
-
+def contact(contact_type: ContactType) -> str:
+    if contact_type == 'github':
+        return 'https://github.com/heirro'
+    elif contact_type == 'twitter':
+        return 'https://x.com/heirrok'
+    elif contact_type == 'linkedIn':
+        return 'https://www.linkedin.com/in/heirro'
+    else:
+        return 'vava@heirro.dev'
 `;
 ---
 
 <Code
     code={code}
-    lang="js"
+    lang="python"
     wrap={true}
 />
 
